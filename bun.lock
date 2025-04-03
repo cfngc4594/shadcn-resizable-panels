@@ -10,6 +10,7 @@
         "@radix-ui/react-toggle-group": "^1.1.2",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
+        "dockview": "^4.2.1",
         "lucide-react": "^0.487.0",
         "next": "15.2.4",
         "next-themes": "^0.4.6",
@@ -393,6 +394,10 @@
     "detect-libc": ["detect-libc@2.0.3", "https://registry.npmmirror.com/detect-libc/-/detect-libc-2.0.3.tgz", {}, "sha512-bwy0MGW55bG41VqxxypOsdSdGqLwXPI/focwgTYCFMbdUiBAxLg9CFzG08sz2aqzknwiX7Hkl0bQENjg8iLByw=="],
 
     "detect-node-es": ["detect-node-es@1.1.0", "https://registry.npmmirror.com/detect-node-es/-/detect-node-es-1.1.0.tgz", {}, "sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ=="],
+
+    "dockview": ["dockview@4.2.1", "https://registry.npmmirror.com/dockview/-/dockview-4.2.1.tgz", { "dependencies": { "dockview-core": "^4.2.1" }, "peerDependencies": { "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-P6T4JiM5yuHa8JH0E/BuPpCv8EMLDoCXtvS169ITRRKfgi+zF98AUrnhW8F+FOXV6QS/5Dtt9ca5YxWgtcQsOQ=="],
+
+    "dockview-core": ["dockview-core@4.2.1", "https://registry.npmmirror.com/dockview-core/-/dockview-core-4.2.1.tgz", {}, "sha512-KaEOMzMdQvWB9e3iRQf9BqerB1sX43wAIhla5uGzkA+irag9wz0F5bkVZyJ5mVqJgqrQdWh+W8j94+L2wY0AmA=="],
 
     "doctrine": ["doctrine@2.1.0", "https://registry.npmmirror.com/doctrine/-/doctrine-2.1.0.tgz", { "dependencies": { "esutils": "^2.0.2" } }, "sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw=="],
 
