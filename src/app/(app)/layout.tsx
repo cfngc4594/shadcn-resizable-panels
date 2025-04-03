@@ -5,31 +5,21 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useEffect, useRef, useState } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { usePanelStore } from "@/stores/usePanelStore";
 import PanelToggleGroup from "@/components/panel-toggle-group";
-import { ImperativePanelGroupHandle, ImperativePanelHandle } from "react-resizable-panels";
 
 interface AppLayoutProps {
+  chat: React.ReactNode;
   problem: React.ReactNode;
   workspace: React.ReactNode;
-  chat: React.ReactNode;
 }
 
-export default function AppLayout({ problem, workspace, chat }: AppLayoutProps) {
-  const {
-    isProblemPanelVisible,
-    isWorkspacePanelVisible,
-    isChatPanelVisible,
-  } = usePanelStore();
-
+export default function AppLayout({ chat, problem, workspace }: AppLayoutProps) {
   const [mounted, setMounted] = useState(false);
-  const resizableChatPanelRef = useRef<ImperativePanelHandle>(null);
-  const resizableProblemPanelRef = useRef<ImperativePanelHandle>(null);
-  const resizableWorkspacePanelRef = useRef<ImperativePanelHandle>(null);
-  const resizablePanelGroupRef = useRef<ImperativePanelGroupHandle>(null);
+  const { isChatVisible, isProblemVisible, isWorkspaceVisible } = usePanelStore();
 
   useEffect(() => {
     setMounted(true);
@@ -47,30 +37,25 @@ export default function AppLayout({ problem, workspace, chat }: AppLayoutProps) 
           <ResizablePanelGroup
             autoSaveId="conditional"
             direction="horizontal"
-            ref={resizablePanelGroupRef}
           >
-            {isProblemPanelVisible && (
+            {isProblemVisible && (
               <ResizablePanel
                 id="problem"
                 order={1}
-                ref={resizableProblemPanelRef}
-                defaultSize={50}
                 className="border rounded-lg px-4 py-2"
               >
                 {problem}
               </ResizablePanel>
             )}
 
-            {isProblemPanelVisible && isWorkspacePanelVisible && (
+            {isProblemVisible && isWorkspaceVisible && (
               <ResizableHandle className="mx-1 bg-transparent hover:bg-blue-500" />
             )}
 
-            {isWorkspacePanelVisible ? (
+            {isWorkspaceVisible ? (
               <ResizablePanel
                 id="workspace"
                 order={2}
-                ref={resizableWorkspacePanelRef}
-                defaultSize={50}
                 className="border rounded-lg px-4 py-2"
               >
                 {workspace}
@@ -79,16 +64,14 @@ export default function AppLayout({ problem, workspace, chat }: AppLayoutProps) 
               <ResizableHandle className="mx-1 bg-transparent hover:bg-blue-500" />
             )}
 
-            {isWorkspacePanelVisible && isChatPanelVisible && (
+            {isWorkspaceVisible && isChatVisible && (
               <ResizableHandle className="mx-1 bg-transparent hover:bg-blue-500" />
             )}
 
-            {isChatPanelVisible && (
+            {isChatVisible && (
               <ResizablePanel
                 id="chat"
                 order={3}
-                ref={resizableChatPanelRef}
-                defaultSize={50}
                 className="border rounded-lg px-4 py-2"
               >
                 {chat}

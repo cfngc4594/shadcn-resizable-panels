@@ -2,41 +2,49 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 type PanelState = {
-  isProblemPanelVisible: boolean;
-  isWorkspacePanelVisible: boolean;
-  isChatPanelVisible: boolean;
+  isChatVisible: boolean;
+  isProblemVisible: boolean;
+  isWorkspaceVisible: boolean;
 };
 
-type PanelAction = {
-  toggleProblemPanelVisibility: () => void;
-  toggleWorkspacePanelVisibility: () => void;
-  toggleChatPanelVisibility: () => void;
+type PanelActions = {
+  toggleChat: () => void;
+  toggleProblem: () => void;
+  toggleWorkspace: () => void;
 };
 
-type PanelStore = PanelState & PanelAction;
+type PanelStore = PanelState & PanelActions;
 
 export const usePanelStore = create<PanelStore>()(
   persist(
     (set) => ({
-      isProblemPanelVisible: true,
-      isWorkspacePanelVisible: true,
-      isChatPanelVisible: false,
-      toggleProblemPanelVisibility: () =>
+      isChatVisible: false,
+      isProblemVisible: true,
+      isWorkspaceVisible: true,
+      
+      toggleChat: () =>
         set((state) => ({
-          isProblemPanelVisible: !state.isProblemPanelVisible,
+          isChatVisible: !state.isChatVisible,
         })),
-      toggleWorkspacePanelVisibility: () =>
+      
+      toggleProblem: () =>
         set((state) => ({
-          isWorkspacePanelVisible: !state.isWorkspacePanelVisible,
+          isProblemVisible: !state.isProblemVisible,
         })),
-      toggleChatPanelVisibility: () =>
+      
+      toggleWorkspace: () =>
         set((state) => ({
-          isChatPanelVisible: !state.isChatPanelVisible,
+          isWorkspaceVisible: !state.isWorkspaceVisible,
         })),
     }),
     {
-      name: "panel-storage",
+      name: "zustand:conditional",
       storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        isChatVisible: state.isChatVisible,
+        isProblemVisible: state.isProblemVisible,
+        isWorkspaceVisible: state.isWorkspaceVisible,
+      }),
     }
   )
 );
